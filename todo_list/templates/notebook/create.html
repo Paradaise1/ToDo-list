@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+  {% if '/edit/' in request.path %}
+    Редактирование задачи
+  {% elif "/delete/" in request.path %}
+    Удаление задачи
+  {% else %}
+    Добавление задачи
+  {% endif %}
+{% endblock %}
+{% block content %}
+  <div class="col d-flex justify-content-center">
+    <div class="card" style="width: 40rem;">
+      <div class="card-header">
+        {% if '/edit/' in request.path %}
+          Редактирование задачи
+        {% elif '/delete/' in request.path %}
+          Удаление задачи
+        {% else %}
+          Добавление задачи
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% if not '/delete/' in request.path %}
+            {% bootstrap_form form %}
+          {% else %}
+            <article>
+              <h3>{{ form.instance.title }}</h3>
+              {% for tag in tags %}
+                {% if not forloop.last %}
+                  {{ tag.name }}, 
+                {% else %}
+                  {{ tag.name }}.
+                {% endif %}
+              {% endfor %}
+              {% if task.completed %}
+                <p class="card-title">Задача завершена!</p>
+              {% else %}
+                <p class="card-title">Дата завершения: {{ task.completion_date|date:"d E Y" }}</p>
+              {% endif %}
+              <p>{{ form.instance.description|linebreaksbr }}</p>
+            </article>
+          {% endif %}
+          {% bootstrap_button button_type="submit" content="Отправить" %}
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

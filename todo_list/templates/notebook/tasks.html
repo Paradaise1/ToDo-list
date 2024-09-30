@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+  Задачи
+{% endblock %}
+{% block content %}
+  {% for task in page_obj %}
+    <article class="mb-5">
+      {% include "includes/task_card.html" %}
+    </article>
+  {% endfor %}
+  {% include "includes/paginator.html" %}
+{% endblock %}

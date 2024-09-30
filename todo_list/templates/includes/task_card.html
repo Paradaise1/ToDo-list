@@ -1,0 +1,14 @@
+<div class="col d-flex justify-content-center">
+  <div class="card" style="width: 40rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ task.title }}</h5>
+      {% if task.completed %}
+        <p class="card-title">Задача завершена!</p>
+      {% else %}
+        <p class="card-title">Дата завершения: {{ task.completion_date|date:"d E Y" }}</p>
+      {% endif %}
+      <p class="card-text">{{ task.description|truncatewords:10 }}</p>
+      <a href="{% url 'notebook:task_detail' task.id %}" class="card-link">Подробная информация</a>
+    </div>
+  </div>
+</div>

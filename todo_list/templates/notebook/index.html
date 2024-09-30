@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+  Главная
+{% endblock %}
+{% block content %}
+  {% if not user.is_authenticated %}
+    <h1>Чтобы завести свой ToDo-List, 
+      <a class="text-decoration-none text-reset" href="{% url 'login' %}"><u>Войдите</u></a> или 
+      <a class="text-decoration-none text-reset" href="{% url 'registration' %}"><u>Зарегестрируйтесь</u></a>
+    </h1>
+  {% else %}
+    <h1><a class="text-decoration-none text-reset" href="{% url 'notebook:tasks' %}"><u>Мои задачи</u></a></h1>
+  {% endif %}
+{% endblock %}

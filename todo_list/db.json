@@ -1,0 +1,202 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$Bpi81SWpSA0HDt0G2ofnLt$UdEDuX7nim2Yhd6efVEh86wYueoZVPEI3hdsA1WD3iw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mask",
+    "first_name": "Илон",
+    "last_name": "Маск",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-18T22:58:32Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$30YLQ8AWERcPtAreVHb3IV$pNwoym7Ukiy8ZNv9L8dF3qMXB4yfJObqIsm/yNu6CrA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "albert",
+    "first_name": "Альберт",
+    "last_name": "Эйнштейн",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-18T22:58:46Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "notebook.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Учёба",
+    "slug": "study"
+  }
+},
+{
+  "model": "notebook.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Работа",
+    "slug": "work"
+  }
+},
+{
+  "model": "notebook.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Развлечения",
+    "slug": "entertainment"
+  }
+},
+{
+  "model": "notebook.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Другое",
+    "slug": "other"
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 1,
+  "fields": {
+    "title": "Задача 1",
+    "completed": false,
+    "description": "Описание задачи 1",
+    "completion_date": "2025-12-18T23:03:52.159Z",
+    "tags": [1, 2],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 2,
+  "fields": {
+    "title": "Задача 2",
+    "completed": false,
+    "description": "Описание задачи 2",
+    "completion_date": "2025-11-18T23:03:52.159Z",
+    "tags": [1, 2, 3],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 3,
+  "fields": {
+    "title": "Задача 3",
+    "completed": false,
+    "description": "Описание задачи 3",
+    "completion_date": "2025-10-18T23:03:52.159Z",
+    "tags": [1],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 4,
+  "fields": {
+    "title": "Задача 4",
+    "completed": false,
+    "description": "Описание задачи 4",
+    "completion_date": "2025-09-18T23:03:52.159Z",
+    "tags": [1, 2, 4],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 5,
+  "fields": {
+    "title": "Задача 5",
+    "completed": false,
+    "description": "Описание задачи 5",
+    "completion_date": "2025-08-18T23:03:52.159Z",
+    "tags": [2],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 6,
+  "fields": {
+    "title": "Задача 6",
+    "completed": false,
+    "description": "Описание задачи 6",
+    "completion_date": "2025-07-18T23:03:52.159Z",
+    "tags": [3],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 7,
+  "fields": {
+    "title": "Задача 7",
+    "completed": false,
+    "description": "Описание задачи 7",
+    "completion_date": "2025-06-18T23:03:52.159Z",
+    "tags": [4],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 8,
+  "fields": {
+    "title": "Задача 8",
+    "completed": false,
+    "description": "Описание задачи 8",
+    "completion_date": "2025-05-18T23:03:52.159Z",
+    "tags": [3, 4],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 9,
+  "fields": {
+    "title": "Задача 9",
+    "completed": false,
+    "description": "Описание задачи 9",
+    "completion_date": "2025-04-18T23:03:52.159Z",
+    "tags": [1, 2, 3, 4],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 10,
+  "fields": {
+    "title": "Задача 10",
+    "completed": false,
+    "description": "Описание задачи 10",
+    "completion_date": "2025-03-18T23:03:52.159Z",
+    "tags": [2, 4],
+    "author": 1
+  }
+},
+{
+  "model": "notebook.task",
+  "pk": 11,
+  "fields": {
+    "title": "Задача 11",
+    "completed": false,
+    "description": "Описание задачи 11",
+    "completion_date": "2025-02-18T23:03:52.159Z",
+    "tags": [1, 4],
+    "author": 1
+  }
+}
+]
