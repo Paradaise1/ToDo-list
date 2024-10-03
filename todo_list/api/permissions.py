@@ -2,12 +2,14 @@ from rest_framework import permissions
 
 
 class IsAdminOrReadOnly(permissions.BasePermission):
+    '''Permission for admin.'''
     def has_permission(self, request, view):
         return (request.method in permissions.SAFE_METHODS
                 or request.user.is_staff)
 
 
 class IsAuthorOrReadOnly(permissions.BasePermission):
+    '''Permission for author.'''
     def has_permission(self, request, view):
         return (
             request.method in permissions.SAFE_METHODS

@@ -5,6 +5,7 @@ from .models import Task, TaskTag
 
 
 class TaskListMixin:
+    '''Mixin for TaskListViews.'''
     model = Task
     template_name = 'notebook/tasks.html'
 
@@ -12,15 +13,17 @@ class TaskListMixin:
 
 
 class TaskDispatchMixin:
+    '''Mixin override dispatch method for TaskViews.'''
     model = Task
     template_name = 'notebook/create.html'
 
     def dispatch(self, request, *args, **kwargs):
         get_object_or_404(Task, pk=kwargs['task_id'], author=request.user)
         return super().dispatch(request, *args, **kwargs)
-    
+
 
 class GetContextDataMixin:
+    '''Mixin override get_context_data method.'''
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         tag_list = TaskTag.objects.filter(task=self.kwargs.get('task_id'))

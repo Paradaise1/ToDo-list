@@ -8,7 +8,7 @@ app_name = 'api'
 router = DefaultRouter()
 
 router.register('tags', TagViewSet)
-router.register('Tasks', TaskViewSet)
+router.register('tasks', TaskViewSet)
 
 urlpatterns = [
     path('auth/', include('djoser.urls')),

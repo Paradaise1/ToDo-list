@@ -21,25 +21,30 @@ User = get_user_model()
 
 
 def index(request):
+    '''View for main page.'''
     return render(request, 'notebook/index.html')
 
 
 class TaskListView(LoginRequiredMixin, TaskListMixin, ListView):
+    '''Viewset for tasks.'''
     def get_queryset(self):
         return get_query_set(Task.objects, self)
 
 
 class CompletedTaskListView(LoginRequiredMixin, TaskListMixin, ListView):
+    '''Viewset for completed tasks.'''
     def get_queryset(self):
         return get_query_set(Task.objects, self).filter(completed=True)
 
 
 class UncompletedTaskListView(LoginRequiredMixin, TaskListMixin, ListView):
+    '''Viewset for uncompleted tasks.'''
     def get_queryset(self):
         return get_query_set(Task.objects, self).filter(completed=False)
 
 
 class TagListView(LoginRequiredMixin, ListView):
+    '''Viewset for tags.'''
     model = Task
     template_name = 'notebook/tag.html'
 
@@ -60,6 +65,7 @@ class TagListView(LoginRequiredMixin, ListView):
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
+    '''Viewset for create tasks.'''
     model = Task
     form_class = TaskForm
     template_name = 'notebook/create.html'
@@ -76,11 +82,13 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
 
 class TaskUpdateView(LoginRequiredMixin, TaskDispatchMixin, UpdateView):
+    '''Viewset for update tasks.'''
     form_class = TaskForm
 
     def get_success_url(self):
         return reverse(
-            'notebook:task_detail', kwargs={'task_id': self.kwargs.get('task_id')}
+            'notebook:task_detail',
+            kwargs={'task_id': self.kwargs.get('task_id')}
         )
 
     def get_object(self):
@@ -92,6 +100,7 @@ class TaskUpdateView(LoginRequiredMixin, TaskDispatchMixin, UpdateView):
 
 
 class TaskDetailView(LoginRequiredMixin, GetContextDataMixin, DetailView):
+    '''Viewset for detail informatin for tasks.'''
     model = Task
     template_name = 'notebook/detail.html'
 
@@ -104,7 +113,13 @@ class TaskDetailView(LoginRequiredMixin, GetContextDataMixin, DetailView):
         )
 
 
-class TaskDeleteView(LoginRequiredMixin, TaskDispatchMixin, GetContextDataMixin, DeleteView):
+class TaskDeleteView(
+    LoginRequiredMixin,
+    TaskDispatchMixin,
+    GetContextDataMixin,
+    DeleteView
+):
+    '''Viewset for delete tasks.'''
     queryset = Task.objects.prefetch_related('tags')
     success_url = reverse_lazy('notebook:tasks')
 

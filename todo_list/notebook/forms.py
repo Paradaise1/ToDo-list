@@ -6,6 +6,7 @@ from .models import Tag, Task
 
 
 class TaskForm(forms.ModelForm):
+    '''Form for tasks.'''
     tags = forms.ModelMultipleChoiceField(
         label='Tags', queryset=Tag.objects.all()
     )

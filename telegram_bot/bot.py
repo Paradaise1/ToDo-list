@@ -15,13 +15,13 @@ from .utils import (
     get_jwt_token,
     ACCESS,
     DATA,
-    USER_ID
 )
 
 API_TOKEN = 'YOUR_TELEGRAM_BOT_API_TOKEN'
 AMERICA = timezone('America/Adak')
 API_URL = 'http://127.0.0.1:8000/api'
 
+USER_ID = 0
 TAG_LIST = []
 HEADERS = dict()
 
@@ -45,14 +45,17 @@ async def send_welcome(message: types.Message):
     
     @dp.message_handler(commands=['addtask'])
     async def get_access(msg: types.Message):
+        global USER_ID, HEADERS
         username, password = msg.text.split()
         username.strip(',')
         password.strip()
         ACCESS['username'] = username
         ACCESS['password'] = password
-        register_user()
+        idd = register_user()
+        if idd.isinstance(int):
+            USER_ID = idd
         get_jwt_token()
-        headers = {'Authorization': f'Bearer {DATA['access']}'}
+        headers = {'Authorization': f'Bearer {DATA["access"]}'}
         HEADERS = {k:v for k, v in headers.items()}
         await msg.reply('Используйте команды /tasks для просмотра задач '
                         'и /addtask для добавления новой задачи.')
@@ -113,7 +116,7 @@ async def add_task(msg: types.Message):
             async def get_task_tags(msg: types.Message):
                 json_data = {
                     'title': title,
-                    'author': msg.from_user.id,
+                    'author': USER_ID,
                     'completion_date': completion_date,
                     'completed': completed,
                     'tags': TAG_LIST

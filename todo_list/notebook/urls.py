@@ -13,7 +13,7 @@ urlpatterns = [
     path('tasks/uncompleted/', views.UncompletedTaskListView.as_view(),
          name='uncompleted_tasks'),
     path('tags/<slug:tag_slug>/', views.TagListView.as_view(),
-         name='tag_tasks'),     
+         name='tag_tasks'),
     path('tasks/create/', views.TaskCreateView.as_view(),
          name='create_task'),
     path('tasks/<int:task_id>/', views.TaskDetailView.as_view(),

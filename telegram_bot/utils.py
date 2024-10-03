@@ -7,7 +7,6 @@ import aiohttp
 API_REGISTER_URL = 'http://127.0.0.1:8000/api/auth/users/'
 API_TOKEN_URL = 'http://127.0.0.1:8000/api/auth/jwt/'
 
-USER_ID = 0
 ACCESS = {'username': '', 'password': ''}
 DATA = {'access': '', 'refresh': ''}
 
@@ -68,8 +67,7 @@ async def register_user():
         ) as response:
             if response.status == 201:
                 data = await response.json()
-                USER_ID = data['id']
-                return
+                return data['id']
             else:
                 async with session.post(
                     f'{API_TOKEN_URL}refresh/',

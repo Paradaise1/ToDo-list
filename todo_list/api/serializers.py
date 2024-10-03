@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.utils import timezone
 
 from rest_framework import serializers
@@ -6,14 +7,16 @@ from notebook.models import Tag, Task, TaskTag
 
 
 class TagSerializer(serializers.ModelSerializer):
+    '''Serializer for tags.'''
     name = serializers.CharField()
 
     class Meta:
         model = Tag
-        fields = ('id', 'name')
+        fields = ('name',)
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    '''Serializer for tasks.'''
     tags = TagSerializer(required=False, many=True)
     author = serializers.SlugRelatedField(
         slug_field='username', read_only=True
@@ -59,7 +62,7 @@ class TaskSerializer(serializers.ModelSerializer):
                 **tag
             )
             lst.append(current_tag)
-        instance.achievements.set(lst)
+        instance.tags.set(lst)
 
         instance.save()
         return instance
@@ -67,7 +70,9 @@ class TaskSerializer(serializers.ModelSerializer):
     def validate(self, data):
         completed = self.initial_data.get('completed')
         completion_date = self.initial_data.get('completion_date')
-        if completion_date < timezone.now() and not completed:
+        if datetime.strptime(
+            completion_date, '%Y-%m-%dT%H:%M:%S.%fZ'
+        ).replace(tzinfo=timezone.utc) < timezone.now() and not completed:
             raise serializers.ValidationError(
                 'Установите корректную дату выполнения задания.'
             )

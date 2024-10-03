@@ -8,6 +8,7 @@ User = get_user_model()
 
 
 class Tag(models.Model):
+    '''Model for tags.'''
     name = models.CharField(
         max_length=MAX_NAME_LENGTH, verbose_name='Название'
     )
@@ -24,6 +25,7 @@ class Tag(models.Model):
 
 
 class Task(models.Model):
+    '''Model for tasks.'''
     title = models.CharField(
         max_length=MAX_NAME_LENGTH, verbose_name='Заголовок'
     )
@@ -58,7 +60,7 @@ class TaskTag(models.Model):
 
     def __str__(self):
         return f'{self.task} {self.tag}'
-    
+
 
 class Comment(models.Model):
     '''Model for comments.'''
